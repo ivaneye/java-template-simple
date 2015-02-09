@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder encoding="UTF-8"  class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd-HH:mm:ss.SSS} %level [%thread] %class:%line : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--<appender name="filelog" class="ch.qos.logback.core.FileAppender">
+        <File>/home/ivan/programs/log.log</File>
+        <encoder encoding="UTF-8"  class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd-HH:mm:ss.SSS} %level [%thread] %class:%line : %msg%n</pattern>
+        </encoder>
+    </appender>-->
+
+
+    <!--屏蔽第三方框架中的日志-->
+    <!--<logger name="org.springframework"/>-->
+    <!--<logger name="org.apache.velocity"/>-->
+
+    <!--<logger name="org.apache.commons.dbcp2">
+        <level value="debug"/>
+        <appender-ref ref="stdout"/>
+    </logger>-->
+
+    <logger name="org.mybatis.spring">
+        <level value="debug"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+
+    <root level="error">
+        <appender-ref ref="stdout" />
+    </root>
+</configuration> 

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry
+		location="/home/ivan/.m2/repository/mysql/mysql-connector-java/5.1.32/mysql-connector-java-5.1.32.jar" />
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+
+		<!--自定义插件，生成需要的代码结构-->
+        <plugin type="com.mybatis.generator.plugin.DomainPlugins"/>
+		<!--<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example$" />
+			<property name="replaceString" value="Criteria" />
+		</plugin>-->
+
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/blog" userId="root"
+			password="root">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		
+		<javaModelGenerator targetPackage="com.mybatis.model"
+			targetProject="/home/ivan/my/teach/javaee/code/template/mybatis-model/src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.mybatis.config"
+			targetProject="/home/ivan/my/teach/javaee/code/template/mybatis-model/src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+							 targetPackage="com.mybatis.mapper"
+							 targetProject="/home/ivan/my/teach/javaee/code/template/mybatis-model/src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table schema="blog" tableName="" domainObjectName="">
+			<property name="useActualColumnNames" value="false" />
+			<!--<generatedKey column="rec_id" sqlStatement="mysql" identity="true" 
+				/> <columnOverride column="DATE_FIELD" property="startDate" /> <ignoreColumn 
+				column="FRED" /> 
+			<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />-->
+		</table>
+
+	</context>
+</generatorConfiguration>

@@ -1,0 +1,64 @@
+#macro(page $pageInfo $formId) 
+    #set($totalPage = ($!pageInfo.totalRecords + $!pageInfo.perPageInt - 1) / $!pageInfo.perPageInt)
+    #set($after2curPage = $!pageInfo.currentPage + 2)
+    #set($before2curPage = $!pageInfo.currentPage - 2)
+    #set($flag = true)
+    #if($!totalPage > 0)
+    <div class="pagination">
+        <ul>
+            <li id="prepage" #if("$!pageInfo.currentPage" == "1")class="disabled"#end><a>&laquo;</a></li>
+            #foreach($i in [1..$!totalPage])
+                #if($!i < $!before2curPage && $!before2curPage > 0)
+                    #if($!flag)
+                        #set($flag = false)
+                        <li><a>...</a></li>
+                    #end
+                #elseif($!i > $!after2curPage)
+                    <li><a>...</a></li>
+                    #break
+                #else
+                    <li #if("$!pageInfo.currentPage" == "$!i") class="active"#end><a id="page_$!i">$!i</a></li>
+                #end
+            #end
+            <li id="nextpage" #if("$!pageInfo.currentPage" == "$!totalPage")class="disabled"#end><a>&raquo;</a></li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            var input = $("<input type='hidden' id='currentPage' name='currentPage' value='1'/>")
+            input.appendTo($("#$formId"));
+            $("a[id^='page_']").each(function () {
+                var _this = $(this);
+                if (_this.parent().attr("class") != "active") {
+                    _this.click(function () {
+                        var id = _this.attr("id");
+                        var page = id.split('_')[1];
+                        $("#currentPage").val(page);
+                        $("#$formId").submit();
+                    });
+                }
+            });
+            var prePage = $("#prepage");
+            if (prePage.attr("class") != "disabled") {
+                prePage.click(function () {
+                    $("#currentPage").val($!pageInfo.currentPage -1);
+                    $("#$formId").submit();
+                });
+            }
+            var nextPage = $("#nextpage");
+            if (nextPage.attr("class") != "disabled") {
+                nextPage.click(function () {
+                    $("#currentPage").val($!pageInfo.currentPage +1);
+                    $("#$formId").submit();
+                });
+            }
+        })
+    </script>
+    #end
+#end
+
+#macro(errorFor $errors)
+    #foreach($_err in $errors)
+        <div>$_err.defaultMessage</div>
+    #end
+#end

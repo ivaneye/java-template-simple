@@ -1,0 +1,17 @@
+{% extends "views/template/base.html" %}
+
+{%block title%}
+新建文章
+{%endblock%}
+
+{% block cont %}
+<form class="navbar-form" action='/article/new' method='post' enctype="multipart/form-data">
+    <div class="form-group">
+        标题:<input class="form-control" type='text' name='title'/><br>
+        内容:
+        <textarea class="form-control" name='content'></textarea><br>
+    </div>
+    <br>
+    <input type='submit' class="btn btn-default" value='提交'/>
+</form>
+{% endblock %}

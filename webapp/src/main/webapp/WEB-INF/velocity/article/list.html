@@ -1,0 +1,29 @@
+#set($_title="文章列表")
+
+<div class="blog-header">
+    <h1 class="blog-title">文章列表</h1>
+</div>
+
+    #foreach($article in $articles)
+<div>
+标题:${article.title<br>
+内容:${article.content}<br>
+<a href="/article/show/${article.recId}">查看全文</a>
+<a href="javascript:return 0;" id="del_${article.recId}">删除</a>
+<hr>
+</div>
+    #end
+
+<script type="text/javascript">
+    $(function(){
+        $("a[id^='del_']").click(function(){
+            if(confirm("确认删除吗?")) {
+                var _this = $(this);
+                var id = _this.attr("id").split("_")[1];
+                $.post("/article/del", {recId: id}, function () {
+                    _this.parent().remove();
+                })
+            }
+        })
+    })
+</script>
