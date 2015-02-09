@@ -14,7 +14,6 @@ public class VelocityEscapeHtmlOutput
     private RuntimeServices rs = null;
 
     public Object referenceInsert(String reference, Object value) {
-        System.out.println("reference = " + reference);
         // 以$!{或者${开头的内容直接返回，不做XSS过滤
         if (reference.startsWith("$!{") || reference.startsWith("${")) {
             return value;
