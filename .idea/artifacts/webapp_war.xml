@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="webapp:war">
+    <output-path>$PROJECT_DIR$/webapp/target</output-path>
+    <root id="root">
+      <element id="artifact" artifact-name="webapp:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="application" name="tomcat bin" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
