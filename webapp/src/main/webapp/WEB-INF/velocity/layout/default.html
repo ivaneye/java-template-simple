@@ -16,28 +16,31 @@
 
 <div class="blog-masthead">
     <div class="container">
-        #*<nav class="blog-nav">
-        <a class="blog-nav-item active" href="#">Home</a>
-        <a class="blog-nav-item" href="#">New features</a>
-        <a class="blog-nav-item" href="#">Press</a>
-        <a class="blog-nav-item" href="#">New hires</a>
-        <a class="blog-nav-item" href="#">About</a>
-    </nav>*#
-       #set($name = $parameter.loginName($request))
-       #if("$!name" == "")
-        <form class="navbar-form" action='/_login' method='post'>
-            <div class="form-group">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <input class="form-control" type='text' placeholder="name" name='username'/>
-                &nbsp;
-                <input class="form-control" type='password' placeholder="password" name='password'/>
-                <input type="hidden" name="path" value="<%=request.getRequestURI()%>"/>
-            </div>
-            <input type='submit' class="btn btn-default" value='登录'/>
-        </form>
+    #*<nav class="blog-nav">
+    <a class="blog-nav-item active" href="#">Home</a>
+    <a class="blog-nav-item" href="#">New features</a>
+    <a class="blog-nav-item" href="#">Press</a>
+    <a class="blog-nav-item" href="#">New hires</a>
+    <a class="blog-nav-item" href="#">About</a>
+</nav>*#
+        #set($name = $parameter.loginName())
+        #if("$!name" == "")
+            <form class="navbar-form" action='/_login' method='post'>
+                <div class="form-group">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <input class="form-control" type='text' placeholder="name" name='username'/>
+                    &nbsp;
+                    <input class="form-control" type='password' placeholder="password" name='password'/>
+                    <input type="hidden" name="path" value="<%=request.getRequestURI()%>"/>
+                </div>
+                <input type='submit' class="btn btn-default" value='登录'/>
+            </form>
         #else
-        $!name
-        <a class="blog-nav-item active" href="/user/logout?path=<%=request.getRequestURI()%>">登出</a>
+            <form class="navbar-form" id="_logoutForm" action='/_logout' method='post'>
+                $!name
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <a class="blog-nav-item active" href="#" onclick="javascript:$('#_logoutForm').submit();">登出</a>
+            </form>
         #end
     </div>
 </div>
