@@ -39,7 +39,7 @@
     </bean>
 
     <!--拦截器配置-->
-    <mvc:interceptors>
+   <!-- <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**/*"/>
             <mvc:exclude-mapping path="/article/list"/>
@@ -49,7 +49,7 @@
             <mvc:exclude-mapping path="/resource/**/*"/>
             <bean class="com.webapp.interceptor.AuthInterceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors>-->
 
     <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
         <property name="resourceLoaderPath" value="/WEB-INF/velocity/"></property>

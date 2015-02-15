@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+    <!--对如下链接放行，不用保护-->
+
+    <!-- 开启默认的拦截器 -->
+    <security:http auto-config='true' use-expressions="false">
+        <!-- 允许访问的uri -->
+        <!--<security:intercept-url pattern="/user/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
+        <!--<security:intercept-url pattern="/resource/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
+        <security:intercept-url pattern="/article/new" access="ROLE_USER"/>
+
+        <!-- 登陆页面配置 -->
+        <security:form-login login-page="/user/login"
+                             default-target-url="/article/new"
+                             authentication-failure-url="/user/login?error"
+                             login-processing-url="/_login"
+                             username-parameter="username"
+                             password-parameter="password"/>
+    </security:http>
+
+    <!-- 权限管理者 -->
+    <security:authentication-manager>
+        <!-- 权限提供者 -->
+        <!--<security:authentication-provider user-service-ref="loginService">-->
+        <security:authentication-provider>
+            <!-- 可提供登陆访问的用户 -->
+            <security:user-service>
+                <security:user name="haha" password="haha" authorities="ROLE_USER, ROLE_ADMIN"/>
+                <security:user name="xixi" password="xixi" authorities="ROLE_USER"/>
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <!-- <bean id="loginService"
+                 class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+         <property name="dataSource" ref="dataSource"/>
+     </bean>-->
+
+</beans>

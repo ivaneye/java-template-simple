@@ -7,6 +7,7 @@
 
     <!--导入datasource.xml配置-->
     <import resource="datasource/datasource.xml"/>
+    <import resource="applicationContext-security.xml"/>
 
     <!--Domain @Configured注解-->
     <context:spring-configured/>

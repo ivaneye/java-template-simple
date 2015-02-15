@@ -4,6 +4,7 @@ import com.webapp.domain.ArticleDomain;
 import com.webapp.domain.UserDomain;
 import com.webapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

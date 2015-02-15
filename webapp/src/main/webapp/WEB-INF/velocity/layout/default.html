@@ -25,9 +25,10 @@
     </nav>*#
        #set($name = $parameter.loginName($request))
        #if("$!name" == "")
-        <form class="navbar-form" action='/user/login' method='post'>
+        <form class="navbar-form" action='/_login' method='post'>
             <div class="form-group">
-                <input class="form-control" type='text' placeholder="name" name='name'/>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <input class="form-control" type='text' placeholder="name" name='username'/>
                 &nbsp;
                 <input class="form-control" type='password' placeholder="password" name='password'/>
                 <input type="hidden" name="path" value="<%=request.getRequestURI()%>"/>

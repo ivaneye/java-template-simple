@@ -24,6 +24,11 @@
     </logger>-->
 
     <logger name="org.mybatis.spring">
+        <level value="error"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+
+    <logger name="org.springframework.security">
         <level value="debug"/>
         <appender-ref ref="stdout"/>
     </logger>
