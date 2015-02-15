@@ -27,7 +27,7 @@
         #if("$!name" == "")
             <form class="navbar-form" action='/_login' method='post'>
                 <div class="form-group">
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    #csrf
                     <input class="form-control" type='text' placeholder="name" name='username'/>
                     &nbsp;
                     <input class="form-control" type='password' placeholder="password" name='password'/>

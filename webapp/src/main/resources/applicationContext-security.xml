@@ -19,33 +19,43 @@
                              login-processing-url="/_login"
                              username-parameter="username"
                              password-parameter="password"/>
-        <security:logout logout-success-url="/user/login"  logout-url="/_logout"/>
+        <security:logout logout-success-url="/user/login" logout-url="/_logout"/>
+
+        <!--XSS攻击，需浏览器支持。可参考VelocityEscapeHtmlOutput,手动处理XSS攻击-->
+        <security:headers>
+            <security:xss-protection/>
+        </security:headers>
     </security:http>
 
     <!-- 权限管理者 -->
     <security:authentication-manager>
         <!-- 权限提供者 -->
-        <!--<security:authentication-provider user-service-ref="loginService">-->
-        <security:authentication-provider>
-            <!-- 可提供登陆访问的用户 -->
-            <security:user-service>
-                <security:user name="haha" password="haha" authorities="ROLE_USER, ROLE_ADMIN"/>
-                <security:user name="xixi" password="xixi" authorities="ROLE_USER"/>
-            </security:user-service>
+        <security:authentication-provider user-service-ref="loginService">
+            <!--<security:password-encoder ref="passwordEncoder">
+                <security:salt-source system-wide="34rfdesf12"/>
+            </security:password-encoder>-->
         </security:authentication-provider>
+        <!--<security:authentication-provider>-->
+        <!-- 可提供登陆访问的用户 -->
+        <!-- <security:user-service>
+             <security:user name="haha" password="haha" authorities="ROLE_USER, ROLE_ADMIN"/>
+             <security:user name="xixi" password="xixi" authorities="ROLE_USER"/>
+         </security:user-service>-->
+        <!--</security:authentication-provider>-->
     </security:authentication-manager>
 
-    <!--<bean id="jdbcUserService"  class="org.springframework.security.userdetails.jdbc.JdbcDaoImpl">
-        <property name="rolePrefix" value="" />
-        <property name="dataSource" ref="dataSource" />
+    <bean id="loginService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+        <property name="rolePrefix" value=""/>
+        <property name="dataSource" ref="dataSource"/>
         <property name="enableAuthorities" value="true"/>
         <property name="enableGroups" value="false"/>
-        <property name="authoritiesByUsernameQuery" value="SELECT username,authority FROM authorities WHERE username = ?" />
-        <property name="usersByUsernameQuery" value="SELECT username,password,enabled as enabled FROM users WHERE username = ?" />
-        <property name="groupAuthoritiesByUsernameQuery" value="" />
+        <property name="authoritiesByUsernameQuery"
+                  value="SELECT name as username,'ROLE_USER' as authority FROM users WHERE name = ?"/>
+        <property name="usersByUsernameQuery"
+                  value="SELECT name as username,password,1 as enabled FROM users WHERE name = ?"/>
+        <property name="groupAuthoritiesByUsernameQuery" value=""/>
+    </bean>
 
-    </bean>-->
-
-    <!--<bean id="passwordEncoder" class="org.springframework.security.providers.encoding.Md5PasswordEncoder"/>-->
+    <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
 
 </beans>
