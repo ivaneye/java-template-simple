@@ -9,11 +9,16 @@ A Java Develop Template created with Spring,SpringMVC,MyBatis,Velocity
 - web-base:web应用通用模块
 - webapp:web应用核心模块
 
-# 各开源项目
+# 各开源项目及版本
 
 - Spring,SpringMVC:4.1.0.RELEASE
+- SpringSecurity:4.0.0.RC1
 - Velocity:1.7
 - Mybatis:3.2.7
+
+# 结构图
+
+![](framework.png)
 
 # 应用分层
 
@@ -27,10 +32,6 @@ A Java Develop Template created with Spring,SpringMVC,MyBatis,Velocity
 - Domain
         - 包:com.webapp.domain
         - 注解:@Configurable
-
-# 事务管理
-
-
 
 # 部署
 

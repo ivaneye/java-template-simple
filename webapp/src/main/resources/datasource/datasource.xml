@@ -37,22 +37,22 @@
 	</bean>
 
 	<!--注解驱动事务-->
-	<!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <!--放弃基于@Transactional注解的事物管理，基于规约由于配置来进行事务管理-->
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+    <!--基于规约由于配置来进行事务管理-->
+    <!--<tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
-            <!--所有以query开头的方法都是只读的 -->
+            &lt;!&ndash;所有以query开头的方法都是只读的 &ndash;&gt;
             <tx:method name="query*" read-only="true" />
-            <!--其他方法使用默认事务策略 -->
+            &lt;!&ndash;其他方法使用默认事务策略 &ndash;&gt;
             <tx:method name="*" />
         </tx:attributes>
     </tx:advice>
-    <!-- AOP配置 -->
+    &lt;!&ndash; AOP配置 &ndash;&gt;
     <aop:config>
         <aop:pointcut id="myPointcut" expression="execution(* com.webapp.service.*.*(..))" />
-        <!--将定义好的事务处理策略应用到上述的切入点 -->
+        &lt;!&ndash;将定义好的事务处理策略应用到上述的切入点 &ndash;&gt;
         <aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut" />
-    </aop:config>
+    </aop:config>-->
 
 </beans>
