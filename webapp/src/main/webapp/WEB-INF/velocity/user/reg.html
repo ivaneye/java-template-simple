@@ -4,7 +4,8 @@
     <h1 class="blog-title">用户注册</h1>
 </div>
 
-<form class="navbar-form" action='/user/reg' method='post' enctype="multipart/form-data">
+<form class="navbar-form" action='/user/reg' method='post'>
+    #csrf
     <div class="form-group">
         用户名:<input class="form-control" type='text' name='name'/><br>
         密码:<input class="form-control" type='password' name='password'/><br>

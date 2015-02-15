@@ -8,7 +8,7 @@
     <!-- 开启默认的拦截器 -->
     <security:http auto-config='true' use-expressions="true">
         <!-- 配置uri权限 -->
-        <security:intercept-url pattern="/user/login" access="permitAll"/>
+        <security:intercept-url pattern="/user/**" access="permitAll"/>
         <security:intercept-url pattern="/resource/**" access="permitAll"/>
         <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
 
@@ -31,9 +31,9 @@
     <security:authentication-manager>
         <!-- 权限提供者 -->
         <security:authentication-provider user-service-ref="loginService">
-            <!--<security:password-encoder ref="passwordEncoder">
-                <security:salt-source system-wide="34rfdesf12"/>
-            </security:password-encoder>-->
+            <security:password-encoder ref="encoder">
+                <security:salt-source system-wide="${password.encode.salt}"/>
+            </security:password-encoder>
         </security:authentication-provider>
         <!--<security:authentication-provider>-->
         <!-- 可提供登陆访问的用户 -->
@@ -56,6 +56,8 @@
         <property name="groupAuthoritiesByUsernameQuery" value=""/>
     </bean>
 
-    <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
+    <bean id="encoder" class="com.web.security.Encoder">
+        <property name="salt" value="${password.encode.salt}"/>
+    </bean>
 
 </beans>

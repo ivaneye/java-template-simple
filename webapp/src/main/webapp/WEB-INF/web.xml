@@ -53,7 +53,7 @@
     
     <servlet>
 		<servlet-name>initServlet</servlet-name>
-		<servlet-class>com.webapp.InitServlet</servlet-class>
+		<servlet-class>com.webapp.InitApplicationContextServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 </web-app>

@@ -11,7 +11,7 @@ import com.webapp.util.ApplicationContext;
  * 初始化ApplicationContext
  * 方便在非Spring管理的类中获取Spring中的bean
  */
-public class InitServlet extends HttpServlet {
+public class InitApplicationContextServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
