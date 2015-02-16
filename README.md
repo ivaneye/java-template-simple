@@ -28,13 +28,19 @@ A Java Develop Template created with Spring,SpringMVC,MyBatis,Velocity
         - 注解:@Controller
 - Service
         - 包:com.webapp.service
-        - 注解:@Service
+        - 注解:@Service,@Transactional
 - Domain
         - 包:com.webapp.domain
         - 注解:@Configurable
 
+# Mybatis代码生成
+
+- 修改generatorConfig.xml中相关配置
+- 在mybatis-generator项目上运行maven命令:
+                mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+
 # 部署
 
-vm Options 添加如下内容:
-
--javaagent:{path}/aspectjweaver-1.8.2.jar
+- 执行init.sql
+- 修改datasource.xml中数据库相关配置
+- vm Options 添加如下内容: -javaagent:{path}/aspectjweaver-1.8.2.jar
