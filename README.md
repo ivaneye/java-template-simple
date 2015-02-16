@@ -12,7 +12,7 @@ A Java Develop Template created with Spring,SpringMVC,MyBatis,Velocity
 # 各开源项目及版本
 
 - Spring,SpringMVC:4.1.0.RELEASE
-- SpringSecurity:4.0.0.RC1
+- SpringSecurity:4.0.0.RC1   注意：目前此版本不在Maven库中，请手动添加
 - Velocity:1.7
 - Mybatis:3.2.7
 
