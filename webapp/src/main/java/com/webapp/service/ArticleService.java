@@ -1,10 +1,12 @@
 package com.webapp.service;
 
-import com.webapp.domain.ArticleDomain;
-import com.webapp.domain.PostDomain;
+import com.mybatis.mapper.ArticleMapper;
+import com.mybatis.mapper.PostMapper;
+import com.mybatis.model.Article;
+import com.mybatis.model.ArticleExample;
+import com.mybatis.model.PostExample;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -13,22 +15,30 @@ import java.util.List;
 @Transactional
 public class ArticleService {
 
-    public List<ArticleDomain> list() {
-        return new ArticleDomain().list();
+    @Autowired
+    private ArticleMapper articleMapper;
+    @Autowired
+    private PostMapper postMapper;
+
+    public List<Article> list() {
+        ArticleExample e = new ArticleExample();
+        return articleMapper.selectByExample(e);
     }
 
-    public void save(ArticleDomain article) {
-        article.insert();
+    public void save(Article article) {
+        articleMapper.insert(article);
     }
 
-    public ArticleDomain selectById(String id) {
-        if(id == null)return null;
+    public Article selectById(String id) {
+        if (id == null) return null;
         Long recId = Long.parseLong(id);
-        return new ArticleDomain().selectByPrimaryKey(recId);
+        return articleMapper.selectByPrimaryKey(recId);
     }
 
     public void deleteById(Long recId) {
-        new ArticleDomain().deleteByPrimaryKey(recId);
-        new PostDomain().deleteByArtId(recId);
+        articleMapper.deleteByPrimaryKey(recId);
+        PostExample e = new PostExample();
+        e.createCriteria().andArtIdEqualTo(recId);
+        postMapper.deleteByExample(e);
     }
 }

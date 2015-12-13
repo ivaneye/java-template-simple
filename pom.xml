@@ -8,8 +8,7 @@
     <modules>
         <module>webapp</module>
         <module>mybatis-model</module>
-        <module>mybatis-generator</module>
-        <module>mybatis-generator-plugins</module>
+        <!--<module>mybatis-generator</module>-->
         <module>web-base</module>
     </modules>
     <name>template Maven Webapp</name>

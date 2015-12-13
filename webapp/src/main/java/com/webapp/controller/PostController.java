@@ -1,6 +1,6 @@
 package com.webapp.controller;
 
-import com.webapp.domain.PostDomain;
+import com.mybatis.model.Post;
 import com.webapp.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,9 +18,9 @@ public class PostController {
     private PostService postService;
 
     @RequestMapping(value="/new",method= RequestMethod.POST)
-    public String _new(PostDomain domain){
-            postService.save(domain);
-        return "redirect:/article/show/" + domain.getArtId() ;
+    public String _new(Post post){
+            postService.save(post);
+        return "redirect:/article/show/" + post.getArtId() ;
     }
 
 }

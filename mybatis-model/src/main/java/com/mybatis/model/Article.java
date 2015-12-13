@@ -1,11 +1,8 @@
 package com.mybatis.model;
 
-import com.model.base.BaseDomain;
-import com.mybatis.mapper.ArticleMapper;
-
 import java.util.Date;
 
-public class Article<T extends BaseDomain> extends BaseDomain<T, ArticleExample, ArticleMapper> {
+public class Article {
     private Long recId;
 
     private String title;

@@ -1,10 +1,8 @@
 package com.mybatis.model;
 
-import com.model.base.BaseDomain;
-import com.mybatis.mapper.UserMapper;
 import java.util.Date;
 
-public class User<T extends BaseDomain> extends BaseDomain<T, UserExample, UserMapper> {
+public class User {
     private Long recId;
 
     private String name;

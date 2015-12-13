@@ -20,7 +20,8 @@
             if(confirm("确认删除吗?")) {
                 var _this = $(this);
                 var id = _this.attr("id").split("_")[1];
-                $.post("/article/del", {recId: id}, function () {
+	            alert("id="+id);
+                $.post("/article/del", {recId: id,${_csrf.parameterName}:"${_csrf.token}"}, function () {
                     _this.parent().remove();
                 })
             }

@@ -1,11 +1,9 @@
 package com.webapp.controller;
 
-import com.webapp.domain.ArticleDomain;
-import com.webapp.domain.PostDomain;
-import com.webapp.domain.UserDomain;
+import com.mybatis.model.Article;
+import com.mybatis.model.Post;
 import com.webapp.service.ArticleService;
 import com.webapp.service.PostService;
-import com.webapp.util.AppContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,14 +26,14 @@ public class ArticleController {
     private PostService postService;
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String index(Model model,@Valid ArticleDomain article,BindingResult result) {
+    public String index(Model model,@Valid Article article,BindingResult result) {
         if(result.hasErrors()){
             System.out.println(result.getFieldError().getDefaultMessage());
             model.addAttribute("_err",result);
             return "/article/new";
         }
         return "/article/new";
-//        UserDomain user = AppContext.getUser();
+//        User user = AppContext.getUser();
 //        if (user.getType() == 0) {
 //            return "/article/new";
 //        } else {
@@ -45,7 +43,7 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String _new(Model model, @Valid ArticleDomain article,BindingResult result) {
+    public String _new(Model model, @Valid Article article,BindingResult result) {
         if(result.hasErrors()){
             System.out.println(result.getFieldError().getDefaultMessage());
             model.addAttribute("_err",result);
@@ -57,15 +55,15 @@ public class ArticleController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
-        List<ArticleDomain> articles = articleService.list();
+        List<Article> articles = articleService.list();
         model.addAttribute("articles", articles);
         return "/article/list";
     }
 
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
     public String show(Model model, @PathVariable String id) {
-        ArticleDomain article = articleService.selectById(id);
-        List<PostDomain> posts = postService.selectByArtId(id);
+        Article article = articleService.selectById(id);
+        List<Post> posts = postService.selectByArtId(id);
         model.addAttribute("article", article);
         model.addAttribute("posts", posts);
         return "/article/show";
@@ -78,9 +76,9 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/del", method = RequestMethod.POST)
-    public
     @ResponseBody
-    void del(Long recId) {
+    public void del(Long recId) {
+        System.out.println("recId = " + recId);
         articleService.deleteById(recId);
     }
 

@@ -10,12 +10,10 @@ import java.lang.reflect.Method;
 public class SensitiveValidator implements ConstraintValidator<Sensitive,Object> {
 
 
-    @Override
     public void initialize(Sensitive constraintAnnotation) {
 
     }
 
-    @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
         if(value == null) return true;
         if(value instanceof  String){

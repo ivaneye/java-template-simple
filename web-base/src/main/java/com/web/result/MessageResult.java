@@ -41,7 +41,6 @@ public class MessageResult<T> extends DeferredResult<T> implements Comparable {
         return (int) (userId ^ (userId >>> 32));
     }
 
-    @Override
     public int compareTo(Object o) {
         if (o == null || getClass() != o.getClass()) return 1;
         MessageResult r = (MessageResult) o;

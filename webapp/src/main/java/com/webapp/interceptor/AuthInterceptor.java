@@ -1,6 +1,6 @@
 package com.webapp.interceptor;
 
-import com.webapp.domain.UserDomain;
+import com.mybatis.model.User;
 import com.webapp.util.AppContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -18,17 +18,17 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String url = request.getRequestURI().toString();
 
-        if(url.endsWith(".json"))return true;
+        if (url.endsWith(".json")) return true;
 
         Cookie[] cookies = request.getCookies();
         boolean flag = false;
-        if(cookies != null) {
+        if (cookies != null) {
             for (Cookie c : cookies) {
                 if (c.getName().equals("user")) {
                     flag = true;
                     String userStr = c.getValue();
                     String[] tmp = userStr.split("_");
-                    UserDomain user = new UserDomain();
+                    User user = new User();
                     user.setRecId(Long.parseLong(tmp[0]));
                     user.setName(tmp[1]);
                     user.setPassword(tmp[2]);
@@ -38,10 +38,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
                 }
             }
         }
-        if(!flag){
-          response.sendRedirect("/user/login");
+        if (!flag) {
+            response.sendRedirect("/user/login");
             return false;
-        }else {
+        } else {
             return super.preHandle(request, response, handler);
         }
     }

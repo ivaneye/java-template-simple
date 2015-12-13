@@ -1,9 +1,14 @@
 package com.webapp.service;
 
-import com.webapp.domain.PostDomain;
+import com.mybatis.mapper.PostMapper;
+import com.mybatis.model.Post;
+import com.mybatis.model.PostExample;
+import com.webapp.util.AppContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,13 +17,23 @@ import java.util.List;
 @Service
 @Transactional
 public class PostService {
-    public void save(PostDomain domain) {
-        domain.save();
+
+    @Autowired
+    private PostMapper postMapper;
+
+    public void save(Post post) {
+        post.setStatus(1);
+        post.setAddTime(new Date());
+        post.setUpdateTime(new Date());
+        post.setUserId(AppContext.getUser().getRecId());
+        postMapper.insert(post);
     }
 
-    public List<PostDomain> selectByArtId(String id) {
-        if(id == null)return null;
+    public List<Post> selectByArtId(String id) {
+        if (id == null) return null;
         Long artId = Long.parseLong(id);
-        return new PostDomain().selectByArtId(artId);
+        PostExample e = new PostExample();
+        e.createCriteria().andArtIdEqualTo(artId);
+        return postMapper.selectByExample(e);
     }
 }

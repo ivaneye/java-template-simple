@@ -1,6 +1,6 @@
 package com.webapp.controller;
 
-import com.webapp.domain.UserDomain;
+import com.mybatis.model.User;
 import com.webapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/reg", method = RequestMethod.POST)
-    public String _new(Model model, UserDomain user) {
+    public String _new(Model model, User user) {
         userService.save(user);
         return "redirect:/article/success";
     }
@@ -39,8 +39,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(Model model, UserDomain user,String path, HttpServletResponse resp) {
-        UserDomain u = userService.login(user);
+    public String login(Model model, User user,String path, HttpServletResponse resp) {
+        User u = userService.login(user);
         path = path.substring(4,path.length()-4);
         if (u != null) {
             String userStr = u.getRecId() + "_" + u.getName() + "_" + u.getPassword() + "_" + u.getType();

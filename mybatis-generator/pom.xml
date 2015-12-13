@@ -11,7 +11,7 @@
 
     <artifactId>mybatis-generator</artifactId>
 
-    <!--<build>
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
@@ -25,15 +25,15 @@
                         </goals>
                     </execution>
                 </executions>
-                <dependencies>
+              <!--  <dependencies>
                     <dependency>
                         <groupId>com.ivanpig</groupId>
                         <artifactId>mybatis-generator-plugins</artifactId>
                         <version>0.0.1-SNAPSHOT</version>
                     </dependency>
-                </dependencies>
+                </dependencies>-->
             </plugin>
         </plugins>
-    </build>-->
+    </build>
 
 </project>

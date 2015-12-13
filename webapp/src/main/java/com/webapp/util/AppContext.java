@@ -1,6 +1,6 @@
 package com.webapp.util;
 
-import com.webapp.domain.UserDomain;
+import com.mybatis.model.User;
 
 /**
  * 存放ThreadLocal变量
@@ -8,13 +8,13 @@ import com.webapp.domain.UserDomain;
  */
 public class AppContext {
 
-    private static final ThreadLocal<UserDomain> user = new ThreadLocal<UserDomain>();
+    private static final ThreadLocal<User> userThreadLocal = new ThreadLocal<User>();
 
-    public static UserDomain getUser(){
-        return user.get();
+    public static User getUser() {
+        return userThreadLocal.get();
     }
 
-    public static void setUser(UserDomain userDomain){
-        user.set(userDomain);
+    public static void setUser(User user) {
+        userThreadLocal.set(user);
     }
 }

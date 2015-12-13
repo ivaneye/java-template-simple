@@ -11,10 +11,6 @@ public class ArticleExample {
 
     protected List<Criteria> oredCriteria;
 
-    protected Integer limitStart;
-
-    protected Integer limitEnd;
-
     public ArticleExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
@@ -66,22 +62,6 @@ public class ArticleExample {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
-    }
-
-    public void setLimitStart(Integer limitStart) {
-        this.limitStart=limitStart;
-    }
-
-    public Integer getLimitStart() {
-        return limitStart;
-    }
-
-    public void setLimitEnd(Integer limitEnd) {
-        this.limitEnd=limitEnd;
-    }
-
-    public Integer getLimitEnd() {
-        return limitEnd;
     }
 
     protected abstract static class GeneratedCriteria {

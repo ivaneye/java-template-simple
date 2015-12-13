@@ -9,13 +9,6 @@
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
 
-		<!--自定义插件，生成需要的代码结构-->
-        <plugin type="com.mybatis.generator.plugin.DomainPlugins"/>
-		<!--<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
-			<property name="searchString" value="Example$" />
-			<property name="replaceString" value="Criteria" />
-		</plugin>-->
-
 		<commentGenerator>
 			<property name="suppressAllComments" value="true" />
 		</commentGenerator>
@@ -30,19 +23,19 @@
 		</javaTypeResolver>
 		
 		<javaModelGenerator targetPackage="com.mybatis.model"
-			targetProject="/home/ivan/my/teach/javaee/code/template/mybatis-model/src/main/java">
+			targetProject="/home/ivan/my/program/work/application/mybatis-model/src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
 		<sqlMapGenerator targetPackage="com.mybatis.config"
-			targetProject="/home/ivan/my/teach/javaee/code/template/mybatis-model/src/main/resources">
+			targetProject="/home/ivan/my/program/work/application/mybatis-model/src/main/resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<javaClientGenerator type="XMLMAPPER"
 							 targetPackage="com.mybatis.mapper"
-							 targetProject="/home/ivan/my/teach/javaee/code/template/mybatis-model/src/main/java">
+							 targetProject="/home/ivan/my/program/work/application/mybatis-model/src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 

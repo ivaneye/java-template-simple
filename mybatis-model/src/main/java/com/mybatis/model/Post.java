@@ -1,10 +1,8 @@
 package com.mybatis.model;
 
-import com.model.base.BaseDomain;
-import com.mybatis.mapper.PostMapper;
 import java.util.Date;
 
-public class Post<T extends BaseDomain> extends BaseDomain<T, PostExample, PostMapper> {
+public class Post {
     private Long recId;
 
     private Long artId;
