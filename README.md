@@ -1,10 +1,7 @@
-# pig-template
-A Java Develop Template created with Spring,SpringMVC,MyBatis,Velocity
-
+# 自用JavaWeb框架
 # 模块
 
 - mybatis-gemerator:包含generatorConfig.xml配置文件，Mybatis Generator配置
-- mybatis-generator-plugins:Mybatis Generator插件，生成项目需要的文件
 - mybatis-model:自动生成的文件都在此模块中
 - web-base:web应用通用模块
 - webapp:web应用核心模块
@@ -16,10 +13,6 @@ A Java Develop Template created with Spring,SpringMVC,MyBatis,Velocity
 - Velocity:1.7
 - Mybatis:3.2.7
 
-# 结构图
-
-![](framework.png)
-
 # 应用分层
 
 - view:webapp/src/main/webapp/WEB-INF/velocity
@@ -29,9 +22,8 @@ A Java Develop Template created with Spring,SpringMVC,MyBatis,Velocity
 - Service
         - 包:com.webapp.service
         - 注解:@Service,@Transactional
-- Domain
-        - 包:com.webapp.domain
-        - 注解:@Configurable
+- DAO/Model
+        - 包:com.mybatis.mapper/com.mybatis.model
 
 # Mybatis代码生成
 
@@ -43,4 +35,3 @@ A Java Develop Template created with Spring,SpringMVC,MyBatis,Velocity
 
 - 执行init.sql
 - 修改datasource.xml中数据库相关配置
-- vm Options 添加如下内容: -javaagent:{path}/aspectjweaver-1.8.2.jar
